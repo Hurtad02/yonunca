@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_game"
+    android:elevation="10dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="@color/gray_light_trans"
+    tools:context=".OnlineScreen">
+
+    <ImageView
+        android:id="@+id/ic_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lens"
+        android:translationZ="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintTop_toTopOf="@id/background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/online"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:translationZ="2dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/ic_online"
+        app:layout_constraintStart_toEndOf="@id/ic_online"/>
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        android:layout_marginEnd="20dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="@id/ic_online"
+        app:layout_constraintBottom_toBottomOf="@id/ic_online"
+        app:layout_constraintEnd_toEndOf="@id/background"/>
+
+    <TextView
+        android:id="@+id/background"
+        android:layout_width="330dp"
+        android:layout_height="280dp"
+        android:background="@drawable/background_online_start"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_game_button"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="@string/create_game"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#039BE5"
+        app:cornerRadius="150dp"
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintEnd_toEndOf="@id/background" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_pencil"
+        android:elevation="10dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/create_game_button"
+        app:layout_constraintBottom_toBottomOf="@id/create_game_button"
+        app:layout_constraintStart_toStartOf="@id/create_game_button"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_game"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="@string/search_game"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#43A047"
+        app:cornerRadius="150dp"
+        app:layout_constraintTop_toBottomOf="@id/create_game_button"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintEnd_toEndOf="@id/background" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_lens"
+        android:translationZ="10dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@id/search_game"
+        app:layout_constraintBottom_toBottomOf="@id/search_game"
+        app:layout_constraintStart_toStartOf="@id/search_game"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

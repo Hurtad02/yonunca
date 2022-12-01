@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888719445645",
+    "project_id": "yo-nunca---juego-para-beber",
+    "storage_bucket": "yo-nunca---juego-para-beber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888719445645:android:172da305df451132965cc4",
+        "android_client_info": {
+          "package_name": "com.example.yonunca_juegoparabeber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888719445645-58ha1u4d2kh0e8s3ujps7gq2md31kit8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-f8zOGSY9Nm46zO0dTmWydZ_HK1OT_qA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888719445645-58ha1u4d2kh0e8s3ujps7gq2md31kit8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

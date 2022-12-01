@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Yo Nunca - Juego para Beber</string>
+
+
+    <string name="google">Google</string>
+
+    <string name="play">Jugar</string>
+    <string name="spin">Gira!</string>
+    <string name="create_game">Crear partida</string>
+    <string name="search_game">Buscar partida</string>
+    <string name="name_game">Nombre de la partida</string>
+    <string name="write">Escribir</string>
+    <string name="random">Aleatorio</string>
+    <string name="turn">Tu turno</string>
+    <string name="other_turn">Es el turno de otra persona</string>
+    <string name="signin">Iniciar Sesión</string>
+    <string name="signup">Registrarse</string>
+    <string name="sign_out">Cerrar Sesión</string>
+    <string name="delete_account">Borrar Cuenta</string>
+    <string name="add_word">Añade una frase</string>
+    <string name="add">Añadir frase</string>
+    <string name="room_name">Salas</string>
+    <string name="join">Unirse</string>
+
+    <string name="naughty">Atrevido</string>
+    <string name="online">Online</string>
+    <string name="community">Comunidad</string>
+    <string name="hot">Picante</string>
+    <string name="never">Yo nunca...</string>
+
+
+    <string name="players">Jugadores</string>
+    <string name="player1">Jugador 1</string>
+    <string name="player2">Jugador 2</string>
+    <string name="player3">Jugador 3</string>
+    <string name="player4">Jugador 4</string>
+    <string name="player5">Jugador 5</string>
+    <string name="number_players">%1d jugadores</string>
+    <string name="room_created">Juego creado exitosamente</string>
+
+
+</resources>
