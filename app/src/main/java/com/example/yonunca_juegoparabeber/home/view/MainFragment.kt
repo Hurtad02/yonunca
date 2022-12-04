@@ -2,15 +2,22 @@ package com.example.yonunca_juegoparabeber.home.view
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.yonunca_juegoparabeber.R
+import com.example.yonunca_juegoparabeber.base.BaseApplication
+import com.example.yonunca_juegoparabeber.base.BaseApplication.Companion.getApplicationContext
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.databinding.FragmentMainBinding
 import com.example.yonunca_juegoparabeber.home.viewmodel.MainViewModel
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 class MainFragment : BaseFragment() {
@@ -20,20 +27,34 @@ class MainFragment : BaseFragment() {
     private val binding get() = _binding!!
     private var contextMenu: ContextMenu? = null
 
+    private var mInterstitialAd: InterstitialAd? = null
+    private final var TAG = "MainFragment"
+
 
     override fun setListeners() {
         binding.run {
             naughty.setOnClickListener {
-                goToNaughty()
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                    goToNaughty()
+                }
             }
             hot.setOnClickListener {
-                goToHot()
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                    goToHot()
+                }
             }
             community.setOnClickListener {
+
+
                 goToCommunity()
             }
             online.setOnClickListener {
-                goToOnline()
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                    goToOnline()
+                }
             }
             createGame.createGameButton.setOnClickListener {
                 goToCreateGame()
@@ -78,6 +99,22 @@ class MainFragment : BaseFragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 //        registerForContextMenu(binding.settings)
+        var adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(TAG, adError.toString())
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d(TAG, "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
         return binding.root
     }
 
@@ -98,7 +135,7 @@ class MainFragment : BaseFragment() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
+        return when (item.itemId) {
             R.id.login -> {
                 showLoginButton()
                 true
