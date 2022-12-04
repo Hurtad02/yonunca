@@ -58,7 +58,7 @@
     <TextView
         android:id="@+id/background"
         android:layout_width="280dp"
-        android:layout_height="600dp"
+        android:layout_height="580dp"
         android:background="@drawable/background_text_game"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

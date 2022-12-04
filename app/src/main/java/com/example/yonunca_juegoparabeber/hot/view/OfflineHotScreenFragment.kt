@@ -12,6 +12,10 @@ import com.example.yonunca_juegoparabeber.databinding.FragmentOfflineHotScreenBi
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.hot.viewmodel.OfflineHotScreenViewModel
 import com.example.yonunca_juegoparabeber.utils.firebase.speakOut
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 
 class OfflineHotScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
@@ -20,6 +24,7 @@ class OfflineHotScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
     private val binding get() = _binding!!
     private val viewModel: OfflineHotScreenViewModel by viewModels()
     private var tts: TextToSpeech? = null
+    private lateinit var adView: AdView
 
     override fun setListeners() {
         binding.run {
@@ -41,6 +46,8 @@ class OfflineHotScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tts = TextToSpeech(context, this)
+
+
     }
 
     override fun onCreateView(
@@ -49,6 +56,12 @@ class OfflineHotScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentOfflineHotScreenBinding.inflate(inflater, container, false)
+
+        MobileAds.initialize(requireContext()) {}
+
+        adView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         return binding.root
     }
 

@@ -15,6 +15,9 @@ import com.example.yonunca_juegoparabeber.databinding.FragmentOfflineScreenBindi
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.naughty.viewmodel.OfflineScreenViewModel
 import com.example.yonunca_juegoparabeber.utils.firebase.speakOut
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 
 class OfflineScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
@@ -23,6 +26,7 @@ class OfflineScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
     private val binding get() = _binding!!
     private val viewModel: OfflineScreenViewModel by viewModels()
     private var tts: TextToSpeech? = null
+    private lateinit var adView: AdView
 
     override fun setListeners() {
         binding.run {
@@ -56,6 +60,12 @@ class OfflineScreenFragment : BaseFragment(), TextToSpeech.OnInitListener {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentOfflineScreenBinding.inflate(inflater, container, false)
+
+        MobileAds.initialize(requireContext()) {}
+
+        adView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         return binding.root
     }
 
