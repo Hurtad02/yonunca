@@ -21,6 +21,8 @@
     <string name="add">Añadir frase</string>
     <string name="room_name">Salas</string>
     <string name="join">Unirse</string>
+    <string name="create_private_room">Ingrese un código si desea que la partida sea privada</string>
+    <string name="room_code">Ingrese el código de la partida privada</string>
 
     <string name="naughty">Atrevido</string>
     <string name="online">Online</string>
