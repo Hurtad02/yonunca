@@ -22,7 +22,7 @@ class SearchGameAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         private val grayColor = ContextCompat.getColor(itemView.context, R.color.gray_light_trans)
         fun bind(item: Room) {
-            binding.nameRoom.text = item.code
+            binding.nameRoom.text = item.name
             binding.numberPlayers.text = binding.root.context.getString(R.string.number_players, item.players.size)
             if (item.isFull()){
                 binding.joinButton.isEnabled = false

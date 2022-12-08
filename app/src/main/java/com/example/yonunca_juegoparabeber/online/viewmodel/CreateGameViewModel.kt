@@ -24,12 +24,24 @@ class CreateGameViewModel: ViewModel() {
         return uiState
     }
 
-    fun createRoom(name: String) {
+    fun createRoom(name: String, code: String) {
         viewModelScope.launch {
             uiState.postValue(uiState.value?.copy(isLoading = true))
-            val roomToCreate = Room(id = "0", code = name, phrase = "", turn = 0.0, date = Date(), players = listOf(firebaseManager.getUserEmail()))
+            val roomToCreate = Room(
+                id = "0",
+                name = name,
+                phrase = "",
+                turn = 0.0,
+                date = Date(),
+                players = listOf(firebaseManager.getUserEmail()),
+                code = code
+            )
             val createdRoom = model.createRoom(roomToCreate)
             uiState.postValue(uiState.value?.copy(createdRoom = createdRoom, isLoading = false))
         }
+    }
+
+    fun clearRoom() {
+        uiState.postValue(uiState.value?.copy(createdRoom = null))
     }
 }

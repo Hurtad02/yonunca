@@ -7,7 +7,6 @@ import com.example.yonunca_juegoparabeber.base.model.PhraseModel
 import com.example.yonunca_juegoparabeber.base.model.RoomModel
 import com.example.yonunca_juegoparabeber.online.model.Room
 import com.example.yonunca_juegoparabeber.online.view.OnlineGameUIState
-import com.example.yonunca_juegoparabeber.online.view.OnlineScreenUIState
 import com.example.yonunca_juegoparabeber.utils.firebase.FirebaseManager
 import kotlinx.coroutines.launch
 

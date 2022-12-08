@@ -23,6 +23,7 @@
     <string name="join">Unirse</string>
     <string name="create_private_room">Ingrese un código si desea que la partida sea privada</string>
     <string name="room_code">Ingrese el código de la partida privada</string>
+    <string name="room_not_found">Juego no encontrado</string>
 
     <string name="naughty">Atrevido</string>
     <string name="online">Online</string>
@@ -39,6 +40,8 @@
     <string name="player5">Jugador 5</string>
     <string name="number_players">%1d jugadores</string>
     <string name="room_created">Juego creado exitosamente</string>
+    <string name="invalid_private_code">Código inválido. Debe contener 6 caracteres</string>
+    <string name="invalid_game_name">Nombre vacío. Por favor ingresa un nombre</string>
 
 
 </resources>

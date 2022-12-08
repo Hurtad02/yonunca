@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.yonunca_juegoparabeber.R
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.databinding.FragmentCreateGameBinding
@@ -22,8 +21,9 @@ class CreateGameFragment : BaseFragment() {
     override fun setListeners() {
         binding.playButton.setOnClickListener {
             if (isFormValid()){
-                viewModel.createRoom(binding.idGame.text.toString())
-
+                viewModel.createRoom(binding.idGame.text.toString(), binding.codeGame.text.toString())
+            } else {
+                showFormError()
             }
         }
         binding.backButton.setOnClickListener {
@@ -31,10 +31,20 @@ class CreateGameFragment : BaseFragment() {
         }
     }
 
+    private fun showFormError(){
+        if (binding.codeGame.text.isNotEmpty() && binding.codeGame.text.length < 6){
+            binding.codeGame.error = getString(R.string.invalid_private_code)
+        }
+        if (binding.idGame.text.isEmpty()){
+            binding.idGame.error = getString(R.string.invalid_game_name)
+        }
+    }
+
     override fun setObservers() {
         viewModel.getUIState().observe(viewLifecycleOwner){
             it.createdRoom?.let { game ->
                 navigateToGame(game)
+                viewModel.clearRoom()
             }
             shouldShowLoading(it.isLoading)
             it.errorMessage?.let { error ->
@@ -55,7 +65,7 @@ class CreateGameFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCreateGameBinding.inflate(inflater, container, false)
         return binding.root
@@ -67,6 +77,9 @@ class CreateGameFragment : BaseFragment() {
     }
 
     private fun isFormValid(): Boolean {
+        if (binding.codeGame.text.isNotEmpty() && binding.codeGame.text.length < 6){
+            return false
+        }
         return binding.idGame.text.isNotEmpty()
     }
 

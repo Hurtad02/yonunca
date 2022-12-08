@@ -1,19 +1,14 @@
 package com.example.yonunca_juegoparabeber.online.view
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.airbnb.lottie.LottieAnimationView
 import com.example.yonunca_juegoparabeber.R
-import com.example.yonunca_juegoparabeber.base.BaseApplication
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.databinding.FragmentOnlineGameBinding
 import com.example.yonunca_juegoparabeber.online.viewmodel.OnlineGameViewModel

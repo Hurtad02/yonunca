@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,15 +23,47 @@ class SearchGameFragment : BaseFragment(), OnJoinPress {
         binding.backButton.setOnClickListener {
             goBack()
         }
+        binding.joinButton.setOnClickListener {
+            if (isFormValid()){
+                viewModel.getRoomByCode(code = binding.idPrivateGame.text.toString())
+            } else {
+                showFormErrors()
+            }
+        }
+    }
+
+    private fun showFormErrors(){
+        binding.idPrivateGame.error = getString(R.string.invalid_private_code)
+    }
+
+    private fun isFormValid(): Boolean {
+        return binding.idPrivateGame.text.length == 6
     }
 
     override fun setObservers() {
         viewModel.getUIState().observe(viewLifecycleOwner){
+            // Update room list
             if (it.roomsList.isNotEmpty()){
                 updateList(it.roomsList)
             }
+            // Update loading bar
             updateProgress(it.isLoading)
+            // Show error if exist
+            if (it.roomError){
+                showPrivateRoomError()
+                viewModel.clearError()
+            }
+            // Join private room if exist
+            if (it.privateRoom != null){
+                onJoinPressed(room = it.privateRoom)
+                viewModel.clearRoom()
+                binding.idPrivateGame.text.clear()
+            }
         }
+    }
+
+    private fun showPrivateRoomError(){
+        Toast.makeText(requireContext(), getString(R.string.room_not_found), Toast.LENGTH_SHORT).show()
     }
 
     private fun updateProgress(isLoading: Boolean){
@@ -40,7 +73,7 @@ class SearchGameFragment : BaseFragment(), OnJoinPress {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchGameBinding.inflate(inflater, container, false)
         return binding.root
