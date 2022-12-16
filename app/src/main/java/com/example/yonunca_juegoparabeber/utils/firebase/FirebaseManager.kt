@@ -3,10 +3,14 @@ package com.example.yonunca_juegoparabeber.utils.firebase
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.yonunca_juegoparabeber.databinding.FragmentMainBinding
+import com.example.yonunca_juegoparabeber.home.viewmodel.MainViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
