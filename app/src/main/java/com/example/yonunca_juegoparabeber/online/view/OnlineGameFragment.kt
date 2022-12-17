@@ -1,10 +1,12 @@
 package com.example.yonunca_juegoparabeber.online.view
 
+import android.app.ActionBar.LayoutParams
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -76,11 +78,25 @@ class OnlineGameFragment : BaseFragment() {
     private fun setTurn(isYourTurn: Boolean){
         if (isYourTurn){
             binding.turnText.text = getText(R.string.turn)
+            binding.turnText.resources.getColor(R.color.white)
+            binding.background.visibility = View.VISIBLE
+            binding.write.visibility = View.VISIBLE
+            binding.pencil.visibility = View.VISIBLE
+            binding.random.visibility = View.VISIBLE
+            binding.dices.visibility = View.VISIBLE
+            binding.backgroundWord.layoutParams.height = 800
             enableWriteButton()
             enableRandomButton()
-            pauseAnimation()
+            binding.animationView.visibility = View.GONE
         } else {
             binding.turnText.text = getText(R.string.other_turn)
+            binding.turnText.resources.getColor(R.color.black)
+            binding.background.visibility = View.GONE
+            binding.write.visibility = View.GONE
+            binding.pencil.visibility = View.GONE
+            binding.random.visibility = View.GONE
+            binding.dices.visibility = View.GONE
+            binding.backgroundWord.layoutParams.height = 1200
             disableWriteButton()
             disableRandomButton()
             startAnimation()
@@ -89,14 +105,8 @@ class OnlineGameFragment : BaseFragment() {
 
     private fun startAnimation() {
         val animationView = binding.animationView
+        animationView.visibility = View.VISIBLE
         animationView.setAnimation("lottie_waiting.json")
-        animationView.loop(true)
-        animationView.playAnimation()
-    }
-
-    private fun pauseAnimation() {
-        val animationView = binding.animationView
-        animationView.setAnimation("lottie_write.json")
         animationView.loop(true)
         animationView.playAnimation()
     }
