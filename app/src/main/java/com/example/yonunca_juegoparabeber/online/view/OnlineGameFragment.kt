@@ -2,6 +2,7 @@ package com.example.yonunca_juegoparabeber.online.view
 
 import android.app.ActionBar.LayoutParams
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,29 +12,40 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.yonunca_juegoparabeber.R
+import com.example.yonunca_juegoparabeber.base.model.Phrase
+import com.example.yonunca_juegoparabeber.base.model.RoomModel
 import com.example.yonunca_juegoparabeber.base.view.BaseFragment
 import com.example.yonunca_juegoparabeber.databinding.FragmentOnlineGameBinding
+import com.example.yonunca_juegoparabeber.online.model.Room
 import com.example.yonunca_juegoparabeber.online.viewmodel.OnlineGameViewModel
+import com.example.yonunca_juegoparabeber.utils.firebase.speakOut
+import java.util.*
 
-class OnlineGameFragment : BaseFragment() {
+class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
     private var _binding: FragmentOnlineGameBinding? = null
 
     private val viewModel: OnlineGameViewModel by viewModels()
     private val args: OnlineGameFragmentArgs by navArgs()
     private val binding get() = _binding!!
 
+    private var tts: TextToSpeech? = null
 
     override fun setListeners() {
-        binding.write.setOnClickListener {
-            val action = OnlineGameFragmentDirections
-                .actionOnlineGameFragmentToCreatePhraseDialogFragment(room = viewModel.getCurrentRoom())
-            findNavController().navigate(action)
-        }
-        binding.backOnlineGame.setOnClickListener {
-            findNavController().navigateUp()
-        }
-        binding.random.setOnClickListener {
-            viewModel.getRandomPhrase()
+        binding.run {
+            write.setOnClickListener {
+                val action = OnlineGameFragmentDirections
+                    .actionOnlineGameFragmentToCreatePhraseDialogFragment(room = viewModel.getCurrentRoom())
+                findNavController().navigate(action)
+            }
+            backOnlineGame.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            random.setOnClickListener {
+                viewModel.getRandomPhrase()
+            }
+            microphone.setOnClickListener {
+                tts?.speakOut(phrase.text.toString())
+            }
         }
     }
 
@@ -43,6 +55,8 @@ class OnlineGameFragment : BaseFragment() {
                 viewModel.joinCurrentPlayerToGameIfRequired()
                 updatePhrase(room.phrase)
                 setTurn(viewModel.isYourTurn())
+                showCurrentTurn()
+                showPlayersNumber()
             }
         }
     }
@@ -56,6 +70,11 @@ class OnlineGameFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        tts = TextToSpeech(context, this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getGameData(args.room)
@@ -63,12 +82,24 @@ class OnlineGameFragment : BaseFragment() {
 
     override fun onDestroy() {
         viewModel.removePlayer()
+        if (tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
         super.onDestroy()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showCurrentTurn() {
+        binding.currentTurn.text = getString(R.string.current_turn, viewModel.getCurrentTurn())
+    }
+
+    private fun showPlayersNumber() {
+        binding.numberPlayer.text = viewModel.getPlayersNumber()
     }
 
     private fun updatePhrase(text: String) {
@@ -79,26 +110,16 @@ class OnlineGameFragment : BaseFragment() {
         if (isYourTurn){
             binding.turnText.text = getText(R.string.turn)
             binding.turnText.resources.getColor(R.color.white)
-            binding.background.visibility = View.VISIBLE
-            binding.write.visibility = View.VISIBLE
-            binding.pencil.visibility = View.VISIBLE
-            binding.random.visibility = View.VISIBLE
-            binding.dices.visibility = View.VISIBLE
+            binding.microphone.visibility = View.GONE
             binding.backgroundWord.layoutParams.height = 800
-            enableWriteButton()
-            enableRandomButton()
+            enableButtons()
             binding.animationView.visibility = View.GONE
         } else {
             binding.turnText.text = getText(R.string.other_turn)
             binding.turnText.resources.getColor(R.color.black)
-            binding.background.visibility = View.GONE
-            binding.write.visibility = View.GONE
-            binding.pencil.visibility = View.GONE
-            binding.random.visibility = View.GONE
-            binding.dices.visibility = View.GONE
+            binding.microphone.visibility = View.VISIBLE
             binding.backgroundWord.layoutParams.height = 1200
-            disableWriteButton()
-            disableRandomButton()
+            disableButtons()
             startAnimation()
         }
     }
@@ -111,27 +132,30 @@ class OnlineGameFragment : BaseFragment() {
         animationView.playAnimation()
     }
 
-    private fun enableWriteButton() {
-        val color = ContextCompat.getColor(requireContext(), R.color.button_turn)
-        binding.write.isEnabled = true
-        binding.write.setBackgroundColor(color)
+    private fun enableButtons() {
+        binding.background.visibility = View.VISIBLE
+        binding.write.visibility = View.VISIBLE
+        binding.pencil.visibility = View.VISIBLE
+        binding.random.visibility = View.VISIBLE
+        binding.dices.visibility = View.VISIBLE
     }
 
-    private fun enableRandomButton() {
-        val color = ContextCompat.getColor(requireContext(), R.color.button_turn)
-        binding.random.isEnabled = true
-        binding.random.setBackgroundColor(color)
+    private fun disableButtons() {
+        binding.background.visibility = View.GONE
+        binding.write.visibility = View.GONE
+        binding.pencil.visibility = View.GONE
+        binding.random.visibility = View.GONE
+        binding.dices.visibility = View.GONE
     }
 
-    private fun disableWriteButton() {
-        val grayColor = ContextCompat.getColor(requireContext(), R.color.gray_light_trans)
-        binding.write.isEnabled = false
-        binding.write.setBackgroundColor(grayColor)
-    }
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val locale = Locale("es", "ES")
+            val result = tts!!.setLanguage(locale)
 
-    private fun disableRandomButton() {
-        val grayColor = ContextCompat.getColor(requireContext(), R.color.gray_light_trans)
-        binding.random.isEnabled = false
-        binding.random.setBackgroundColor(grayColor)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                binding.microphone.visibility = View.INVISIBLE
+            }
+        }
     }
 }

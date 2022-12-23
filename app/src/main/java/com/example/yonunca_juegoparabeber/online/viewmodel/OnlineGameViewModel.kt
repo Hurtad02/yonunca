@@ -66,6 +66,14 @@ class OnlineGameViewModel : ViewModel() {
         return false
     }
 
+    fun getCurrentTurn(): String {
+        return uiState.value?.room?.turn?.toInt().toString()
+    }
+
+    fun getPlayersNumber(): String {
+        return uiState.value?.room?.id.toString()
+    }
+
     fun getCurrentRoom(): Room? {
         return uiState.value?.room
     }

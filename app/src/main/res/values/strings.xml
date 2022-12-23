@@ -26,6 +26,7 @@
     <string name="room_not_found">Juego no encontrado</string>
     <string name="email">Ingrese su email</string>
     <string name="password">Ingrese su contraseña</string>
+    <string name="current_turn">Es el turno del jugador #%s</string>
 
     <string name="naughty">Atrevido</string>
     <string name="online">Online</string>
