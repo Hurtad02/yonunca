@@ -1,5 +1,6 @@
 package com.example.yonunca_juegoparabeber.createphrase.view
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,9 @@ class CreatePhraseDialogFragment : DialogFragment(), IBaseUI {
             } else {
                 setFormError()
             }
+        }
+        binding.backButton.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

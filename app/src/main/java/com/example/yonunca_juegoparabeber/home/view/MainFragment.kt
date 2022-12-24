@@ -74,6 +74,9 @@ class MainFragment : BaseFragment() {
             settings.setOnClickListener {
                 showDialog()
             }
+            popUp.signUp.setOnClickListener {
+                findNavController().navigate(R.id.mainFragment_to_signUpFragment)
+            }
         }
     }
 

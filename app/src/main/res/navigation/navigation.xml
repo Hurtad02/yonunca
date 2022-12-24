@@ -26,6 +26,9 @@
         <action
             android:id="@+id/mainFragment_to_createGameFragment"
             app:destination="@id/createGameFragment" />
+        <action
+            android:id="@+id/mainFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/offlineHotScreenFragment"
@@ -80,4 +83,8 @@
             android:id="@+id/createGameFragment_to_onlineGameFragment"
             app:destination="@id/onlineGameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.yonunca_juegoparabeber.online.view.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

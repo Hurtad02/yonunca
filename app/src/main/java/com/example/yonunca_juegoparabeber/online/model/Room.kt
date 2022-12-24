@@ -69,4 +69,5 @@ data class Room(
         }
         turn = newTurn.toDouble()
     }
+
 }

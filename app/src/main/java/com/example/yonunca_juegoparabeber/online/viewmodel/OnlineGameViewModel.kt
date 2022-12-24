@@ -67,11 +67,19 @@ class OnlineGameViewModel : ViewModel() {
     }
 
     fun getCurrentTurn(): String {
-        return uiState.value?.room?.turn?.toInt().toString()
+        return (uiState.value?.room?.turn?.toInt()?.plus(1)).toString()
     }
 
     fun getPlayersNumber(): String {
-        return uiState.value?.room?.id.toString()
+        return if (getCurrentRoom() != null) {
+            (getCurrentRoom()!!.getCurrentPlayerIndex() + 1).toString()
+        } else {
+            "0"
+        }
+    }
+
+    fun playersList(): Int {
+        return uiState.value?.room?.players!!.size
     }
 
     fun getCurrentRoom(): Room? {
@@ -104,5 +112,4 @@ class OnlineGameViewModel : ViewModel() {
     private fun Room.getCurrentPlayerIndex(): Int {
         return players.indexOf(firebaseManager.getUserEmail())
     }
-
 }

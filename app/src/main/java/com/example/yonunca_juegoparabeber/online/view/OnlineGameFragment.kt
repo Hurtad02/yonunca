@@ -57,6 +57,7 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
                 setTurn(viewModel.isYourTurn())
                 showCurrentTurn()
                 showPlayersNumber()
+                listOfPlayers()
             }
         }
     }
@@ -99,7 +100,11 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
     }
 
     private fun showPlayersNumber() {
-        binding.numberPlayer.text = viewModel.getPlayersNumber()
+        binding.numberPlayer.text = getString(R.string.number_player, viewModel.getPlayersNumber())
+    }
+
+    private fun listOfPlayers() {
+        binding.players.text = getString(R.string.list_players, viewModel.playersList())
     }
 
     private fun updatePhrase(text: String) {

@@ -17,7 +17,7 @@
     <string name="signup">Registrarse</string>
     <string name="sign_out">Cerrar Sesión</string>
     <string name="delete_account">Borrar Cuenta</string>
-    <string name="add_word">Añade una frase</string>
+    <string name="add_word">Escribe aquí..</string>
     <string name="add">Añadir frase</string>
     <string name="room_name">Salas</string>
     <string name="join">Unirse</string>
@@ -25,8 +25,13 @@
     <string name="room_code">Ingrese el código de la partida privada</string>
     <string name="room_not_found">Juego no encontrado</string>
     <string name="email">Ingrese su email</string>
+    <string name="email_title">Email</string>
     <string name="password">Ingrese su contraseña</string>
+    <string name="password_title">Contraseña</string>
     <string name="current_turn">Es el turno del jugador #%s</string>
+    <string name="number_player">Eres el jugador #%s</string>
+    <string name="list_players">Cantidad de jugadores %d/5</string>
+    <string name="forgotten_password">¿Olvidaste la contraseña?</string>
 
     <string name="naughty">Atrevido</string>
     <string name="online">Online</string>
