@@ -50,7 +50,6 @@ class RoomModel {
     suspend fun getPublicRooms(): List<Room> {
         val documents = db.collection("salas")
             .whereGreaterThan("actualizado", getYesterday())
-            .whereEqualTo("codigo", "")
             .get().await().documents
         val rooms = mutableListOf<Room>()
         documents.forEach{

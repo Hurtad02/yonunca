@@ -2,6 +2,7 @@ package com.example.yonunca_juegoparabeber.online.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -56,6 +57,10 @@ class SearchGameAdapter(
         list.clear()
         list.addAll(data)
         notifyDataSetChanged()
+    }
+
+    fun shouldBlockPrivateRoom() {
+
     }
 
 }
