@@ -2,14 +2,9 @@ package com.example.yonunca_juegoparabeber.online.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yonunca_juegoparabeber.R
-import com.example.yonunca_juegoparabeber.base.model.Phrase
-import com.example.yonunca_juegoparabeber.community.view.OnLikePressed
-import com.example.yonunca_juegoparabeber.databinding.ItemCommunityWordsBinding
 import com.example.yonunca_juegoparabeber.databinding.ItemRoomsBinding
 import com.example.yonunca_juegoparabeber.online.model.Room
 
@@ -57,10 +52,6 @@ class SearchGameAdapter(
         list.clear()
         list.addAll(data)
         notifyDataSetChanged()
-    }
-
-    fun shouldBlockPrivateRoom() {
-
     }
 
 }

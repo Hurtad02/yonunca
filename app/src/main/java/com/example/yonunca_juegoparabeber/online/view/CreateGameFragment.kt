@@ -49,6 +49,7 @@ class CreateGameFragment : BaseFragment() {
             shouldShowLoading(it.isLoading)
             it.errorMessage?.let { error ->
                 showCreateError(error)
+                viewModel.clearError()
             }
         }
     }

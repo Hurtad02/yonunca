@@ -37,11 +37,19 @@ class CreateGameViewModel: ViewModel() {
                 code = code
             )
             val createdRoom = model.createRoom(roomToCreate)
-            uiState.postValue(uiState.value?.copy(createdRoom = createdRoom, isLoading = false))
+            if (createdRoom != null) {
+                uiState.postValue(uiState.value?.copy(createdRoom = createdRoom, isLoading = false))
+            } else {
+                uiState.postValue(uiState.value?.copy(errorMessage = "El código de partida ya existe", isLoading = false))
+            }
         }
     }
 
     fun clearRoom() {
         uiState.postValue(uiState.value?.copy(createdRoom = null))
+    }
+
+    fun clearError() {
+        uiState.postValue(uiState.value?.copy(errorMessage = null))
     }
 }

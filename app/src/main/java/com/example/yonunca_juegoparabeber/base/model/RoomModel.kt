@@ -50,6 +50,7 @@ class RoomModel {
     suspend fun getPublicRooms(): List<Room> {
         val documents = db.collection("salas")
             .whereGreaterThan("actualizado", getYesterday())
+            .whereEqualTo("codigo", "")
             .get().await().documents
         val rooms = mutableListOf<Room>()
         documents.forEach{
@@ -58,7 +59,13 @@ class RoomModel {
         return rooms
     }
 
-    suspend fun createRoom(room: Room): Room {
+    suspend fun createRoom(room: Room): Room? {
+        val alreadyExist = getRoomByCode(room.code) != null
+
+        if (alreadyExist) {
+            return null
+        }
+
         val roomMap = hashMapOf(
             "nombre" to room.name,
             "frase" to room.phrase,
@@ -67,10 +74,8 @@ class RoomModel {
             "actualizado" to room.date,
             "codigo" to room.code
         )
-
         val reference = db.collection(ROOMS_COLLECTION)
             .add(roomMap).await()
-
         val document = reference.get().await()
         return Room(document)
     }
