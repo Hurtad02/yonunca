@@ -77,6 +77,9 @@ class MainFragment : BaseFragment() {
             popUp.signUp.setOnClickListener {
                 findNavController().navigate(R.id.mainFragment_to_signUpFragment)
             }
+            popUp.signIn.setOnClickListener {
+                findNavController().navigate(R.id.mainFragment_to_signUpFragment)
+            }
         }
     }
 

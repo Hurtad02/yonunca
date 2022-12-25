@@ -29,6 +29,9 @@
         <action
             android:id="@+id/mainFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/mainFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/offlineHotScreenFragment"
@@ -87,4 +90,8 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.yonunca_juegoparabeber.online.view.SignUpFragment"
         android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.yonunca_juegoparabeber.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>
