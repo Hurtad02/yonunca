@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/action"
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/offlineScreenFragment"
@@ -52,7 +53,7 @@
         android:id="@+id/onlineGameFragment"
         android:name="com.example.yonunca_juegoparabeber.online.view.OnlineGameFragment"
         android:label="fragment_online_game"
-        tools:layout="@layout/fragment_online_game" >
+        tools:layout="@layout/fragment_online_game">
         <argument
             android:name="room"
             app:argType="com.example.yonunca_juegoparabeber.online.model.Room" />
@@ -72,7 +73,7 @@
         android:id="@+id/createPhraseDialogFragment"
         android:name="com.example.yonunca_juegoparabeber.createphrase.view.CreatePhraseDialogFragment"
         android:label="fragment_create_phrase_dialog"
-        tools:layout="@layout/fragment_create_phrase_dialog" >
+        tools:layout="@layout/fragment_create_phrase_dialog">
         <argument
             android:name="room"
             app:argType="com.example.yonunca_juegoparabeber.online.model.Room"
@@ -81,7 +82,7 @@
     <fragment
         android:id="@+id/createGameFragment"
         android:name="com.example.yonunca_juegoparabeber.online.view.CreateGameFragment"
-        android:label="CreateGameFragment" >
+        android:label="CreateGameFragment">
         <action
             android:id="@+id/createGameFragment_to_onlineGameFragment"
             app:destination="@id/onlineGameFragment" />
@@ -92,6 +93,9 @@
         android:label="SignUpFragment" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.yonunca_juegoparabeber.SignInFragment"
+        android:name="com.example.yonunca_juegoparabeber.online.view.SignInFragment"
         android:label="SignInFragment" />
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment" />
 </navigation>

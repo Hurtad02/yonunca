@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_color"
-    tools:context=".SignInFragment">
+    android:background="@drawable/background_color">
 
     <ImageView
         android:id="@+id/back_button"
@@ -46,12 +45,23 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:hint="@string/email"
         android:backgroundTint="@color/white"
         android:textColorHint="@color/white"
         android:layout_marginHorizontal="40dp"
         app:layout_constraintStart_toStartOf="@id/title_email"
         app:layout_constraintTop_toBottomOf="@id/title_email"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintBottom_toTopOf="@id/sign_in_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/password_title"
@@ -71,6 +81,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="@color/white"
         android:backgroundTint="@color/white"
+        android:inputType="textPassword"
         android:hint="@string/password"
         android:layout_marginHorizontal="40dp"
         app:layout_constraintStart_toStartOf="@id/password_title"

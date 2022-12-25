@@ -52,6 +52,8 @@
     <string name="invalid_game_name">Nombre vacío. Por favor ingresa un nombre</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_password">Contraseña inválida, debe tener al menos 7 caracteres</string>
+    <string name="invalid_email">Dirección de correo inválida</string>
 
 
 </resources>

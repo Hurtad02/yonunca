@@ -1,20 +1,21 @@
 package com.example.yonunca_juegoparabeber.utils.firebase
 
+import android.R.attr.password
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.yonunca_juegoparabeber.databinding.FragmentMainBinding
-import com.example.yonunca_juegoparabeber.home.viewmodel.MainViewModel
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
+
 
 class FirebaseManager() {
 
@@ -54,4 +55,13 @@ class FirebaseManager() {
         return currentUser.value!!.email!!
     }
 
+    suspend fun createUser(email: String, password: String): FirebaseUser? {
+        return auth.createUserWithEmailAndPassword(email, password)
+            .await().user
+    }
+
+    suspend fun signIn(email: String, password: String): FirebaseUser? {
+        return auth.signInWithEmailAndPassword(email, password)
+            .await().user
+    }
 }
