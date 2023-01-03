@@ -60,7 +60,7 @@ class RoomModel {
     }
 
     suspend fun createRoom(room: Room): Room? {
-        val alreadyExist = getRoomByCode(room.code) != null
+        val alreadyExist = getRoomByCode(room.code) != null && room.code.isNotEmpty()
 
         if (alreadyExist) {
             return null

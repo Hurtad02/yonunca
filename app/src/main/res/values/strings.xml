@@ -32,12 +32,13 @@
     <string name="number_player">Eres el jugador #%s</string>
     <string name="list_players">Cantidad de jugadores %d/5</string>
     <string name="forgotten_password">¿Olvidaste la contraseña?</string>
+    <string name="reset_password">Recuperar contraseña</string>
 
     <string name="naughty">Atrevido</string>
     <string name="online">Online</string>
     <string name="community">Comunidad</string>
     <string name="hot">Picante</string>
-    <string name="never">Yo nunca...</string>
+    <string name="never">Yo nunca&#8230;</string>
 
 
     <string name="players">Jugadores</string>
@@ -50,7 +51,6 @@
     <string name="room_created">Juego creado exitosamente</string>
     <string name="invalid_private_code">Código inválido. Debe contener 6 caracteres</string>
     <string name="invalid_game_name">Nombre vacío. Por favor ingresa un nombre</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invalid_password">Contraseña inválida, debe tener al menos 7 caracteres</string>
     <string name="invalid_email">Dirección de correo inválida</string>

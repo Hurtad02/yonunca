@@ -2,6 +2,8 @@ package com.example.yonunca_juegoparabeber.online.view
 
 import android.app.ActionBar.LayoutParams
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +34,7 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
 
     override fun setListeners() {
         binding.run {
-            write.setOnClickListener {
+            popUp.write.setOnClickListener {
                 val action = OnlineGameFragmentDirections
                     .actionOnlineGameFragmentToCreatePhraseDialogFragment(room = viewModel.getCurrentRoom())
                 findNavController().navigate(action)
@@ -40,7 +42,7 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
             backOnlineGame.setOnClickListener {
                 findNavController().navigateUp()
             }
-            random.setOnClickListener {
+            popUp.random.setOnClickListener {
                 viewModel.getRandomPhrase()
             }
             microphone.setOnClickListener {
@@ -113,18 +115,12 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
 
     private fun setTurn(isYourTurn: Boolean){
         if (isYourTurn){
-            binding.turnText.text = getText(R.string.turn)
-            binding.turnText.resources.getColor(R.color.white)
             binding.microphone.visibility = View.GONE
-            binding.backgroundWord.layoutParams.height = 800
-            enableButtons()
+            binding.popUp.createWord.visibility = View.VISIBLE
             binding.animationView.visibility = View.GONE
         } else {
-            binding.turnText.text = getText(R.string.other_turn)
-            binding.turnText.resources.getColor(R.color.black)
             binding.microphone.visibility = View.VISIBLE
-            binding.backgroundWord.layoutParams.height = 1200
-            disableButtons()
+            binding.popUp.createWord.visibility = View.GONE
             startAnimation()
         }
     }
@@ -137,21 +133,21 @@ class OnlineGameFragment : BaseFragment(), TextToSpeech.OnInitListener {
         animationView.playAnimation()
     }
 
-    private fun enableButtons() {
-        binding.background.visibility = View.VISIBLE
-        binding.write.visibility = View.VISIBLE
-        binding.pencil.visibility = View.VISIBLE
-        binding.random.visibility = View.VISIBLE
-        binding.dices.visibility = View.VISIBLE
-    }
-
-    private fun disableButtons() {
-        binding.background.visibility = View.GONE
-        binding.write.visibility = View.GONE
-        binding.pencil.visibility = View.GONE
-        binding.random.visibility = View.GONE
-        binding.dices.visibility = View.GONE
-    }
+//    private fun enableButtons() {
+//        binding.background.visibility = View.VISIBLE
+//        binding.write.visibility = View.VISIBLE
+//        binding.pencil.visibility = View.VISIBLE
+//        binding.random.visibility = View.VISIBLE
+//        binding.dices.visibility = View.VISIBLE
+//    }
+//
+//    private fun disableButtons() {
+//        binding.background.visibility = View.GONE
+//        binding.write.visibility = View.GONE
+//        binding.pencil.visibility = View.GONE
+//        binding.random.visibility = View.GONE
+//        binding.dices.visibility = View.GONE
+//    }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {

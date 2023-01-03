@@ -203,7 +203,7 @@ class MainFragment : BaseFragment() {
                 when (array[which]) {
                     getString(R.string.signin) -> showLoginButton()
                     getString(R.string.sign_out) -> signOut()
-                    getString(R.string.delete_account) -> signOut()
+                    getString(R.string.delete_account) -> deleteAccount()
                 }
             }
         builder.create().show()
@@ -224,6 +224,10 @@ class MainFragment : BaseFragment() {
     private fun signOut() {
         viewModel.signOut()
         Toast.makeText(requireContext(), "Se ha cerrado la sesión", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun deleteAccount() {
+        viewModel.deleteAccount()
     }
 
     private fun closeOnlinePopUp() {

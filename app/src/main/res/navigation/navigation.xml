@@ -94,8 +94,21 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.yonunca_juegoparabeber.online.view.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/signInFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_mainFragment"
         app:destination="@id/mainFragment" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.yonunca_juegoparabeber.online.view.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/forgotPasswordFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

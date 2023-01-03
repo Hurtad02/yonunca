@@ -33,6 +33,9 @@ class SignInFragment : BaseFragment() {
                 )
             }
         }
+        binding.forgottenPassword.setOnClickListener {
+            findNavController().navigate(R.id.signInFragment_to_forgotPasswordFragment)
+        }
     }
 
     private fun isFormValid(): Boolean {

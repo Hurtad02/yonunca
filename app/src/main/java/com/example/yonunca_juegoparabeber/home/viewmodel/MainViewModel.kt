@@ -1,12 +1,14 @@
 package com.example.yonunca_juegoparabeber.home.viewmodel
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.yonunca_juegoparabeber.base.BaseApplication.Companion.getApplicationContext
 import com.example.yonunca_juegoparabeber.online.view.OnlineScreenUIState
 import com.example.yonunca_juegoparabeber.utils.firebase.FirebaseManager
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -66,5 +68,16 @@ class MainViewModel: ViewModel() {
     fun signOut() {
         Firebase.auth.signOut()
         updateCurrentUser()
+    }
+
+    fun deleteAccount() {
+        Firebase.auth.currentUser!!
+            .delete()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(getApplicationContext(), "La cuenta ha sido eliminada", Toast.LENGTH_LONG).show()
+                    updateCurrentUser()
+                }
+            }
     }
 }
